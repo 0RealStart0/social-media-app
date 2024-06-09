@@ -14,7 +14,8 @@ import { useLogin } from "../../hooks/auth";
 import { useForm } from "react-hook-form";
 import { DASHBOARD, REGISTER } from "../../lib/routes";
 import { emailValidate, passwordValidate } from "../../utils/form-validate";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../context/AuthContextProvider";
 
 export default function Login() {
   const { mutate: login, isPending } = useLogin();
@@ -23,6 +24,16 @@ export default function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { user, isLoading } = useAuthContext();
+  const navigate = useNavigate();
+
+  if (isLoading) {
+    return "Loading login page...";
+  }
+
+  if (user) {
+    navigate(DASHBOARD);
+  }
 
   async function handleLogin(data) {
     login({

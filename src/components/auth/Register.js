@@ -19,7 +19,8 @@ import {
   passwordValidate,
   usernameValidate,
 } from "../../utils/form-validate";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../context/AuthContextProvider";
 
 export default function Register() {
   const { mutate: signup, isPending } = useRegister();
@@ -30,6 +31,17 @@ export default function Register() {
     formState: { errors },
   } = useForm({ mode: "onChange" });
   let pwd = watch("password", "");
+
+  const { user, isLoading } = useAuthContext();
+  const navigate = useNavigate();
+
+  if (isLoading) {
+    return "Loading register page...";
+  }
+
+  if (user) {
+    navigate(DASHBOARD);
+  }
 
   async function handleRegister(data) {
     signup({
