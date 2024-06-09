@@ -6,7 +6,7 @@ export default function CommentList({ post }) {
   const { id } = post;
   const { data: comments, isPending: isLoading } = useComments(id);
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return "Loading..";
 
   return (
     <Box>
