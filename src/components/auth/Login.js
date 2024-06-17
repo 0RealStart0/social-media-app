@@ -9,6 +9,7 @@ import {
   Input,
   Link,
   Text,
+  VStack,
 } from "@chakra-ui/react";
 import { useLogin } from "../../hooks/auth";
 import { useForm } from "react-hook-form";
@@ -100,6 +101,24 @@ export default function Login() {
           </Link>{" "}
           instead!
         </Text>
+
+        <Box mt="8" bg="gray.50" p="4" borderRadius="md">
+          <VStack spacing="4" textAlign="center">
+            <Text fontSize="sm">테스트 계정:</Text>
+            <Box bg="gray.100" p="2" borderRadius="md" width="full">
+              <Text>
+                <strong>이메일:</strong> test@example.com
+              </Text>
+              <Text>
+                <strong>비밀번호:</strong> password123
+              </Text>
+            </Box>
+            <Text fontSize="sm" color="red.500">
+              참고: 탈퇴 기능은 없으며, 모든 테스트 데이터는 일정 기간 후
+              삭제됩니다. 익명 정보로 가입해 주세요.
+            </Text>
+          </VStack>
+        </Box>
       </Box>
     </Center>
   );

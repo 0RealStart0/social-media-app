@@ -16,7 +16,7 @@ function Home() {
     navigate(DASHBOARD);
   }
 
-  return <div>index</div>;
+  return <></>;
 }
 
 export default Home;
